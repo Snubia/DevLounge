@@ -106,7 +106,7 @@ const ProfileForm = ({
             onChange={onChange}
           />{' '}
           <small className='form-text'>
-            Could be your own company or one you work for{' '}
+            Could be your own company or the one you work for{' '}
           </small>{' '}
         </div>{' '}
         <div className='form-group'>
@@ -118,7 +118,7 @@ const ProfileForm = ({
             onChange={onChange}
           />{' '}
           <small className='form-text'>
-            Could be your own or a company website{' '}
+            It could also be the link to your portfolio{' '}
           </small>{' '}
         </div>{' '}
         <div className='form-group'>
@@ -130,7 +130,7 @@ const ProfileForm = ({
             onChange={onChange}
           />{' '}
           <small className='form-text'>
-            City & state suggested(eg.Boston, MA){' '}
+            City & state suggested(eg.Seattle, WA){' '}
           </small>{' '}
         </div>{' '}
         <div className='form-group'>
@@ -142,7 +142,7 @@ const ProfileForm = ({
             onChange={onChange}
           />{' '}
           <small className='form-text'>
-            Please use comma separated values(eg.HTML, CSS, JavaScript, PHP){' '}
+            Please use comma separated values(eg.HTML, CSS, JavaScript, Mysql){' '}
           </small>{' '}
         </div>{' '}
         <div className='form-group'>
@@ -154,8 +154,7 @@ const ProfileForm = ({
             onChange={onChange}
           />{' '}
           <small className='form-text'>
-            If you want your latest repos and a Github link, include your
-            username{' '}
+            Allows you to access the most recent git repos and links{' '}
           </small>{' '}
         </div>{' '}
         <div className='form-group'>
@@ -166,7 +165,7 @@ const ProfileForm = ({
             onChange={onChange}
           />{' '}
           <small className='form-text'> Tell us a little about yourself </small>{' '}
-        </div>
+        </div>{' '}
         <div className='my-2'>
           <button
             onClick={() => toggleSocialInputs(!displaySocialInputs)}
@@ -176,7 +175,7 @@ const ProfileForm = ({
             Add Social Network Links{' '}
           </button>{' '}
           <span> Optional </span>{' '}
-        </div>
+        </div>{' '}
         {displaySocialInputs && (
           <Fragment>
             <div className='form-group social-input'>
@@ -188,7 +187,7 @@ const ProfileForm = ({
                 value={twitter}
                 onChange={onChange}
               />{' '}
-            </div>
+            </div>{' '}
             <div className='form-group social-input'>
               <i className='fab fa-facebook fa-2x' />
               <input
@@ -198,7 +197,7 @@ const ProfileForm = ({
                 value={facebook}
                 onChange={onChange}
               />{' '}
-            </div>
+            </div>{' '}
             <div className='form-group social-input'>
               <i className='fab fa-youtube fa-2x' />
               <input
@@ -208,7 +207,7 @@ const ProfileForm = ({
                 value={youtube}
                 onChange={onChange}
               />{' '}
-            </div>
+            </div>{' '}
             <div className='form-group social-input'>
               <i className='fab fa-linkedin fa-2x' />
               <input
@@ -218,7 +217,7 @@ const ProfileForm = ({
                 value={linkedin}
                 onChange={onChange}
               />{' '}
-            </div>
+            </div>{' '}
             <div className='form-group social-input'>
               <i className='fab fa-instagram fa-2x' />
               <input
@@ -230,7 +229,7 @@ const ProfileForm = ({
               />{' '}
             </div>{' '}
           </Fragment>
-        )}
+        )}{' '}
         <input type='submit' className='btn btn-primary my-1' />
         <Link className='btn btn-light my-1' to='/dashboard'>
           Go Back{' '}
