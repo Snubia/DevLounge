@@ -16,12 +16,12 @@
 body {
   background-image: url('img/TL.jpeg');
   background-repeat: no-repeat;
-  background-size: 2000px 1500px;
+  background-size: 1950px 1100px;
 
   font-family: 'Raleway', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: #333;
   color: #333;
 }
 
@@ -260,7 +260,7 @@ img {
 .form .form-text {
   display: block;
   margin-top: 0.3rem;
-  color: #888;
+  color: #fff;
 }
 
 .form input[type='text'],

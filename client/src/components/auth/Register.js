@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'; // connecting with the alert action and this call is exported at the bottom
 import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'; // always import this when working with prompt
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -24,7 +24,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert('Passwords do not match', 'danger');
+      setAlert('Passwords do not match', 'danger'); // calling the alert from the action
     } else {
       register({
         name,
@@ -105,6 +105,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
+  // exporting connect as well
   setAlert,
   register,
 })(Register);
