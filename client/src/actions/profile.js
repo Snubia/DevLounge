@@ -1,5 +1,7 @@
 import api from '../utils/api';
-import { setAlert } from './alert';
+import {
+  setAlert
+} from './alert';
 
 import {
   GET_PROFILE,
@@ -24,14 +26,19 @@ export const getCurrentProfile = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      },
     });
   }
 };
 
 // Get all profiles
 export const getProfiles = () => async (dispatch) => {
-  dispatch({ type: CLEAR_PROFILE });
+  dispatch({
+    type: CLEAR_PROFILE
+  });
 
   try {
     const res = await api.get('/profile');
@@ -43,7 +50,10 @@ export const getProfiles = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      },
     });
   }
 };
@@ -60,7 +70,10 @@ export const getProfileById = (userId) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      },
     });
   }
 };
@@ -107,7 +120,39 @@ export const createProfile = (formData, history, edit = false) => async (
 
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      },
+    });
+  }
+};
+
+export const UploadImage = (formData, history) => async (dispatch) => {
+  try {
+    const res = await api.put('/profile/image', formData);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert('Experience Added', 'success'));
+
+    history.push('/dashboard');
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      },
     });
   }
 };
@@ -134,7 +179,10 @@ export const addExperience = (formData, history) => async (dispatch) => {
 
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      },
     });
   }
 };
@@ -161,7 +209,10 @@ export const addEducation = (formData, history) => async (dispatch) => {
 
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      },
     });
   }
 };
@@ -180,7 +231,10 @@ export const deleteExperience = (id) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      },
     });
   }
 };
@@ -199,7 +253,10 @@ export const deleteEducation = (id) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      },
     });
   }
 };
@@ -210,14 +267,21 @@ export const deleteAccount = () => async (dispatch) => {
     try {
       await api.delete('/profile');
 
-      dispatch({ type: CLEAR_PROFILE });
-      dispatch({ type: ACCOUNT_DELETED });
+      dispatch({
+        type: CLEAR_PROFILE
+      });
+      dispatch({
+        type: ACCOUNT_DELETED
+      });
 
       dispatch(setAlert('Your account has been permanently deleted'));
     } catch (err) {
       dispatch({
         type: PROFILE_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status },
+        payload: {
+          msg: err.response.statusText,
+          status: err.response.status
+        },
       });
     }
   }

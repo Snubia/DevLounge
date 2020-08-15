@@ -7,28 +7,32 @@ const config = require('config');
 const {
     check,
     validationResult
-} = require('express-validator'); //require('express-validator/check');
+} = require('express-validator');
 
 const User = require('../../models/User');
 
-// route to get api/auth
+// @route    GET api/auth
+// @desc     Get user by token
+// @access   Private
 router.get('/', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
         res.json(user);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('-password');
+        res.status(500).send('Server Error');
     }
 });
 
-// route to Post api/auth
-// to authenticate users and get token. has access to the public
-router.post('/', [
-        check('email', 'Please enter a valid email').isEmail(),
+// @route    POST api/auth
+// @desc     Authenticate user & get token
+// @access   Public
+router.post(
+    '/',
+    [
+        check('email', 'Please include a valid email').isEmail(),
         check('password', 'Password is required').exists()
     ],
-
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -36,46 +40,49 @@ router.post('/', [
                 errors: errors.array()
             });
         }
+
         const {
             email,
             password
         } = req.body;
 
         try {
-            // see if the user exists
             let user = await User.findOne({
                 email
             });
 
             if (!user) {
-                return res.status(400).json({
-                    errors: [{
-                        msg: 'Invalid Credential'
-                    }]
-                });
+                return res
+                    .status(400)
+                    .json({
+                        errors: [{
+                            msg: 'Invalid Credentials'
+                        }]
+                    });
             }
 
-            // match the user and the password with bcrypt
-
             const isMatch = await bcrypt.compare(password, user.password);
+
             if (!isMatch) {
-                return res.status(400).json({
-                    errors: [{
-                        msg: 'Invalid Credential'
-                    }]
-                });
+                return res
+                    .status(400)
+                    .json({
+                        errors: [{
+                            msg: 'Invalid Credentials'
+                        }]
+                    });
             }
 
             const payload = {
                 user: {
                     id: user.id
                 }
-            }
+            };
 
             jwt.sign(
                 payload,
                 config.get('jwtSecret'), {
-                    expiresIn: 360000
+                    expiresIn: '5 days'
                 },
                 (err, token) => {
                     if (err) throw err;
@@ -84,12 +91,10 @@ router.post('/', [
                     });
                 }
             );
-
         } catch (err) {
             console.error(err.message);
-            ReadableStream.status(500).send('Server error');
+            res.status(500).send('Server error');
         }
-
     }
 );
 

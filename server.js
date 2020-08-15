@@ -26,6 +26,6 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-const PORT = process.env.PORT || 5000; // will help with the deployment to heroku
+const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`Server started on ${PORT}`)); //listen on the port above
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

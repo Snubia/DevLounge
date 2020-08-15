@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -48,6 +48,7 @@ const ProfileForm = ({
   }, [loading, getCurrentProfile, profile]);
 
   const {
+    avatar,
     company,
     website,
     location,
@@ -80,6 +81,21 @@ const ProfileForm = ({
         <i className='fas fa-user' /> Add some changes to your profile{' '}
       </p>{' '}
       <small> * = required field </small>{' '}
+      <div className='container'>
+        <div className='row'>
+          <form>
+            <h3>* Please upload a profile picture</h3>
+            <div className='form-group'>
+              <input type='file' />
+            </div>
+            <div className='form-group'>
+              <button className='btn btn-primary' type='submit'>
+                Upload
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
       <form className='form' onSubmit={onSubmit}>
         <div className='form-group'>
           <select name='status' value={status} onChange={onChange}>

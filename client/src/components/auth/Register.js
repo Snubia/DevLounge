@@ -35,6 +35,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
+    //adding from upload from here
+
     return <Redirect to='/dashboard' />;
   }
 
@@ -62,10 +64,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             value={email}
             onChange={onChange}
           />{' '}
-          <small className='form-text'>
-            This site uses Gravatar uses the gravatar from your email as profile
-            picture{' '}
-          </small>{' '}
+          <small className='form-text'>We won't spam you </small>{' '}
         </div>{' '}
         <div className='form-group'>
           <input

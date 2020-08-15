@@ -12,7 +12,7 @@ import {
     LOGOUT
 } from './types';
 
-// Load User
+// Load User check for a token then sen it it with util/setauth
 export const loadUser = () => async dispatch => {
     try {
         const res = await api.get('/auth');

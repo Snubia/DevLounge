@@ -11,3 +11,5 @@ const setAuthToken = token => {
 };
 
 export default setAuthToken;
+
+// thos function pushes the token to /action/auth

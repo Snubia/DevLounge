@@ -14,15 +14,15 @@
 }
 
 body {
-  background-image: url('img/TL.jpeg');
+  background-image: url('img/new.jpeg');
   background-repeat: no-repeat;
   background-size: 1950px 1100px;
 
   font-family: 'Raleway', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #333;
-  color: #333;
+  background-color: #fff;
+  color: #fff;
 }
 
 a {
@@ -332,7 +332,7 @@ button {
   top: 0;
   border-bottom: solid 1px var(--primary-color);
   opacity: 0.9;
-  background-color: #00ace6;
+  background-color: #1c1c7d;
 }
 
 .navbar ul {
@@ -507,7 +507,7 @@ button {
 }
 
 .post .post-date {
-  color: #aaa;
+  color: #fff;
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
