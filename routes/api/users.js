@@ -1,15 +1,19 @@
 const express = require('express');
+//const gravatar = require('react-gravatar');
 const router = express.Router();
-//const gravatar = require('gravatar');
+const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const { check, validationResult } = require('express-validator');
-//const normalize = require('normalize-url');
-let  multer = require('multer'),
-     mongoose = require('mongoose'),
-     uuidv4 = require('uuid/v4'),
-     router = express.Router();
+const {
+  check,
+  validationResult
+} = require('express-validator');
+const normalize = require('normalize-url');
+// let  multer = require('multer'),
+//      mongoose = require('mongoose'),
+//      uuidv4 = require('uuid/v4'),
+//      router = express.Router();
 
 const User = require('../../models/User');
 
@@ -36,7 +40,11 @@ router.post(
       });
     }
 
-    const { name, email, password } = req.body;
+    const {
+      name,
+      email,
+      password
+    } = req.body;
 
     try {
       let user = await User.findOne({
@@ -45,40 +53,47 @@ router.post(
 
       if (user) {
         return res.status(400).json({
-          errors: [
-            {
-              msg: 'User already exists',
-            },
-          ],
+          errors: [{
+            msg: 'User already exists',
+          }, ],
         });
       }
       // introducing multer
+      const avatar = normalize(
+        gravatar.url(email, {
+          s: '200',
+          r: 'pg',
+          d: 'mm',
+        }), {
+          forceHttps: true
+        }
+      );
 
-      const storage = multer.diskStorage({
-        destination: (req, file, cb) => {
-          cb(null, DIR);
-        },
-        filename: (req, file, cb) => {
-          const fileName = file.originalname.toLowerCase().split(' ').join('-');
-          cb(null, uuidv4() + '-' + fileName);
-        },
-      }));
+      // const storage = multer.diskStorage({
+      //   destination: (req, file, cb) => {
+      //     cb(null, DIR);
+      //   },
+      //   filename: (req, file, cb) => {
+      //     const fileName = file.originalname.toLowerCase().split(' ').join('-');
+      //     cb(null, uuidv4() + '-' + fileName);
+      //   },
+      // }));
 
-      var upload = multer({
-        storage: storage,
-        fileFilter: (req, file, cb) => {
-          if (
-            file.mimetype == 'image/png' ||
-            file.mimetype == 'image/jpg' ||
-            file.mimetype == 'image/jpeg'
-          ) {
-            cb(null, true);
-          } else {
-            cb(null, false);
-            return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
-          }
-        },
-      });
+      // var upload = multer({
+      //   storage: storage,
+      //   fileFilter: (req, file, cb) => {
+      //     if (
+      //       file.mimetype == 'image/png' ||
+      //       file.mimetype == 'image/jpg' ||
+      //       file.mimetype == 'image/jpeg'
+      //     ) {
+      //       cb(null, true);
+      //     } else {
+      //       cb(null, false);
+      //       return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+      //     }
+      //   },
+      // });
 
       user = new User({
         name,
@@ -101,8 +116,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
-        {
+        config.get('jwtSecret'), {
           expiresIn: '5 days',
         },
         (err, token) => {

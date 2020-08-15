@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 const DashboardActions = () => {
   return (
     <div className='dash-buttons'>
-      <Link to='/upload-image' className='btn btn-light'>
-        <i className='fas fa-id-card text-primary' /> Upload Profile Image{' '}
-      </Link>{' '}
       <Link to='/edit-profile' className='btn btn-light'>
         <i className='fas fa-user-circle text-primary' /> Edit Profile{' '}
       </Link>{' '}
