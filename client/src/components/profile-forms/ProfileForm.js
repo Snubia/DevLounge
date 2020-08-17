@@ -74,7 +74,7 @@ const ProfileForm = ({
     createProfile(formData, history, profile ? true : false);
   };
 
-  // start multer
+  // // start multer
   //   constructor(props) {
   //     super(props);
 
@@ -117,7 +117,7 @@ const ProfileForm = ({
   //         </div>
   //     )
   // }
-  // // multer ends
+  // // // multer ends
 
   return (
     <Fragment>
@@ -129,24 +129,23 @@ const ProfileForm = ({
       <div className='container'>
         <div className='row'>
           <form>
-            <h3>* Please upload a profile picture</h3>
+            <h3> * Please upload a profile picture </h3>{' '}
             <div className='form-group'>
               <input type='file' />
-            </div>
+            </div>{' '}
             <div className='form-group'>
               <button className='btn btn-primary' type='submit'>
-                Upload
+                Upload{' '}
               </button>
-
               <div className='App'>
                 <p>
                   <img id='output' width='200' />
-                </p>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+                </p>{' '}
+              </div>{' '}
+            </div>{' '}
+          </form>{' '}
+        </div>{' '}
+      </div>{' '}
       <form className='form' onSubmit={onSubmit}>
         <div className='form-group'>
           <select name='status' value={status} onChange={onChange}>
