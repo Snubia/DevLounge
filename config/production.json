@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://Nunu:TechyLounge@techylounge.xhu86.mongodb.net/Techies?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken"
+}
