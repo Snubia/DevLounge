@@ -19,33 +19,36 @@ const Dashboard = ({
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Dashboard</h1>
+      <h1 className='large text-primary'> Dashboard </h1>{' '}
       <p className='lead'>
-        <i className='fas fa-user' /> Welcome {user && user.name}
-      </p>
+        <i className='fas fa-user' /> Welcome {user && user.name}{' '}
+      </p>{' '}
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
-          <Experience experience={profile.experience} />
+          <Experience experience={profile.experience} />{' '}
           <Education education={profile.education} />
-
           <div className='my-2'>
             <button className='btn btn-danger' onClick={() => deleteAccount()}>
-              <i className='fas fa-user-minus' /> Delete My Account
-            </button>
-          </div>
+              <i className='fas fa-user-minus' /> Delete My Account{' '}
+            </button>{' '}
+          </div>{' '}
         </Fragment>
       ) : (
         <Fragment>
           <p>
-            It seems like your profile is not set up yet. Tell us more about
+            It seems like your profile is not set up yet.Tell us more about
             yourself!
-          </p>
+          </p>{' '}
+          <p>
+            We use gravatars for profile picture.Please visit(gravatar.com) to
+            register your gravatar with your email.{' '}
+          </p>{' '}
           <Link to='/create-profile' className='btn btn-primary my-1'>
-            Create Profile
-          </Link>
+            Create Profile{' '}
+          </Link>{' '}
         </Fragment>
-      )}
+      )}{' '}
     </Fragment>
   );
 };
@@ -62,6 +65,7 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
-  Dashboard
-);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  deleteAccount,
+})(Dashboard);
