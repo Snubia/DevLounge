@@ -175,6 +175,7 @@ img {
 .badge-primary,
 .alert-primary {
   background: var(--primary-color);
+  border-radius: 12px;
   color: #fff;
 }
 
@@ -183,6 +184,7 @@ img {
 .badge-light,
 .alert-light {
   background: var(--light-color);
+  border-radius: 12px;
   color: #333;
 }
 
